@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shenkaiyi Rong | Anthropologist & Designer</title>
+    <title>Shenkaiyi Rong | Anthropology, Design & Exploration</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +11,7 @@
 
     <style>
         :root {
+            /* Light Mode - Ivory Paper Texture */
             --bg: #fcfcf9;
             --surface: #ffffff;
             --text-main: #121212;
@@ -33,123 +34,168 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body { 
             background: var(--bg); 
             color: var(--text-main); 
             font-family: var(--font-sans);
             line-height: 1.8;
             padding: 100px 24px;
+            overflow-x: hidden;
         }
 
         .container { max-width: 900px; margin: 0 auto; }
 
-        header { margin-bottom: 100px; }
-
-        h1 {
-            font-family: var(--font-serif);
-            font-size: clamp(2.8rem, 10vw, 5rem);
-            line-height: 0.95;
-            margin-bottom: 32px;
-            letter-spacing: -0.03em;
-        }
-
-        .tagline {
-            font-size: 1.3rem;
-            color: var(--text-sub);
-            max-width: 700px;
-            font-weight: 300;
-        }
-
-        .tagline b {
-            color: var(--text-main);
-            font-weight: 600;
-            border-bottom: 2px solid var(--columbia-blue);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-top: 80px;
-        }
-
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 48px 40px;
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            border-color: var(--text-main);
-            transform: translateY(-5px);
-        }
-
-        .card h2 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            color: var(--text-sub);
-            margin-bottom: 24px;
-            opacity: 0.7;
-        }
-
-        .card h3 {
-            font-family: var(--font-serif);
-            font-size: 1.7rem;
-            margin-bottom: 18px;
-            font-style: italic;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: var(--text-sub);
-        }
-
-        .contact-section {
-            margin-top: 100px;
-            padding: 40px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-        }
-
-        .contact-section h2 {
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        .contact-link {
-            display: inline-block;
-            margin-right: 24px;
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 2px solid var(--columbia-blue);
-            transition: var(--transition);
-        }
-
-        .contact-link:hover {
-            background: var(--columbia-blue);
-            color: #000;
-        }
-
-        footer {
-            margin-top: 100px;
-            padding-top: 40px;
-            border-top: 1px solid var(--border);
+        /* HEADER SECTION: Featuring the abstract texture to fill space */
+        header { 
+            margin-bottom: 120px; 
+            position: relative;
+            min-height: 250px;
             display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: var(--text-sub);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-            h1 { font-size: 3.5rem; }
-            .contact-link { display: block; margin-bottom: 16px; }
+        /* Abstract Contour/Network Texture */
+        header::after {
+            content: "";
+            position: absolute;
+            right: -10%;
+            top: -20%;
+            width: 60%;
+            height: 140%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23C4D8E2' stroke-width='1' opacity='0.4'%3E%3Cpath d='M769 229C749.8 225.3 738.4 223.6 726.8 222.4C680.2 217.4 628.6 222.6 584.7 240.4C540.8 258.2 504.6 288.7 478.3 326.8C452.1 364.8 435.7 410.5 429.4 456.6C423.1 502.8 426.9 549.3 440.8 592.9C454.7 636.5 478.8 677.1 511.4 709.8C544 742.4 585 767 630.8 781.2C676.5 795.3 726.9 799 774.4 791.7'/%3E%3Cpath d='M856 132C831.2 127.4 816.6 125.4 801.8 124C742.3 118.4 676.2 125.9 620 149.8C563.8 173.6 517.5 214.6 483.9 265.8C450.3 317 429.4 378.3 421.3 440.3C413.3 502.4 418.1 565.1 435.9 623.7C453.7 682.4 484.6 736.9 526.3 780.7C568.1 824.5 620.5 857.5 679.2 876.6'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        h1 { 
+            font-family: var(--font-serif); 
+            font-size: clamp(3rem, 10vw, 5.5rem); 
+            line-height: 0.9; 
+            margin-bottom: 32px; 
+            letter-spacing: -0.04em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline { 
+            font-size: 1.35rem; 
+            color: var(--text-sub); 
+            max-width: 680px; 
+            font-weight: 300; 
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+
+        .tagline b { 
+            color: var(--text-main); 
+            font-weight: 600; 
+            border-bottom: 2px solid var(--columbia-blue); 
+        }
+
+        /* GRID SECTION */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 32px; 
+            margin-top: 80px; 
+            position: relative;
+            z-index: 1;
+        }
+
+        .card { 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            padding: 56px 48px; 
+            transition: var(--transition); 
+            border-radius: 2px;
+        }
+
+        .card:hover { 
+            border-color: var(--text-main); 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02); 
+        }
+
+        .card h2 { 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.3em; 
+            color: var(--text-sub); 
+            margin-bottom: 28px; 
+            opacity: 0.6; 
+        }
+
+        .card h3 { 
+            font-family: var(--font-serif); 
+            font-size: 1.8rem; 
+            margin-bottom: 18px; 
+            font-style: italic; 
+        }
+
+        .card p { font-size: 1.05rem; color: var(--text-sub); font-weight: 300; }
+
+        /* CONTACT SECTION */
+        .contact-section { 
+            margin-top: 100px; 
+            padding: 64px 48px; 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-section h2 { 
+            font-family: var(--font-serif); 
+            font-size: 2rem; 
+            margin-bottom: 32px; 
+            font-style: italic; 
+        }
+
+        .contact-link { 
+            display: inline-block; 
+            margin-right: 40px; 
+            color: var(--text-main); 
+            text-decoration: none; 
+            font-weight: 600; 
+            border-bottom: 2px solid var(--columbia-blue); 
+            transition: var(--transition); 
+            font-size: 1.2rem; 
+        }
+
+        .contact-link:hover { 
+            background: var(--columbia-blue); 
+            color: #000; 
+            padding: 0 8px; 
+        }
+
+        /* FOOTER */
+        footer { 
+            margin-top: 120px; 
+            padding-top: 40px; 
+            border-top: 1px solid var(--border); 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 0.85rem; 
+            color: var(--text-sub); 
+            text-transform: uppercase; 
+            letter-spacing: 0.15em; 
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) { 
+            body { padding: 80px 20px; }
+            header { min-height: auto; margin-bottom: 80px; }
+            header::after { width: 100%; right: -20%; opacity: 0.2; }
+            .grid { grid-template-columns: 1fr; } 
+            h1 { font-size: 3.5rem; } 
+            .card { padding: 40px 32px; }
+            .contact-link { display: block; margin-bottom: 24px; } 
+            footer { flex-direction: column; gap: 20px; }
         }
     </style>
 </head>
@@ -159,45 +205,45 @@
         <header>
             <h1>Shenkaiyi Rong</h1>
             <p class="tagline">
-                Currently pursuing an MA in <b>Anthropology and Education</b> at <b>Teachers College, Columbia University</b>. Exploring the threads of culture, travel, and digital experience.
+                Graduate student in <b>Anthropology and Education</b> at <b>Columbia University</b>. Bridging the gap between human narratives, digital landscapes, and the spirit of exploration.
             </p>
         </header>
 
         <main class="grid">
             <section class="card">
                 <h2>Academia</h2>
-                <h3>The Human Lens</h3>
-                <p>Decoding the cultural logic of learning. My research leverages ethnographic methods to understand how technology reshapes our social fabric.</p>
+                <h3>Ethnographic Insight</h3>
+                <p>Decoding the cultural patterns that shape modern learning. I explore how our social environments influence our digital interactions and educational growth.</p>
             </section>
 
             <section class="card">
                 <h2>Design</h2>
-                <h3>UX Philosophy</h3>
-                <p>Bridging the gap between human insight and digital products. I apply anthropological empathy to craft meaningful user experiences.</p>
+                <h3>UX Anthropology</h3>
+                <p>Applying deep human empathy to digital product design. I believe understanding the "user" starts with understanding the "human."</p>
             </section>
 
             <section class="card">
                 <h2>Exploration</h2>
-                <h3>Beyond Borders</h3>
-                <p>From the glacial silence of <b>Alaska</b> to the majestic roar of <b>Niagara Falls</b>. I traverse the American landscape to observe the diverse stories written into every mile.</p>
+                <h3>The Great Wanderer</h3>
+                <p>From the glacial horizons of <b>Alaska</b> to the thunderous majesty of <b>Niagara Falls</b>. Documenting the American landscape through the lens of a student traveler.</p>
             </section>
 
             <section class="card">
-                <h2>Play</h2>
-                <h3>Nintendo Ethics</h3>
-                <p>Inspired by the philosophy of "Lateral Thinking with Withered Technology." I believe pure joy is the ultimate benchmark of great design.</p>
+                <h2>Philosophy</h2>
+                <h3>Interactive Joy</h3>
+                <p>Drawing inspiration from the art of Nintendo. I explore how playful design and lateral thinking can create meaningful, lasting emotional connections.</p>
             </section>
         </main>
 
         <section class="contact-section">
-            <h2>Get in Touch</h2>
+            <h2>Let's Connect</h2>
             <a href="mailto:shenkaiyi2002@outlook.com" class="contact-link">Email</a>
-            <a href="https://www.linkedin.com/in/shenkaiyi-rong" target="_blank" class="contact-link">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/shenkaiyi-rong-085b74359/" target="_blank" class="contact-link">LinkedIn Profile</a>
         </section>
 
         <footer>
             <div>SHENKAIYI.COM / 2026</div>
-            <div>New Jersey & Beyond</div>
+            <div>New Jersey & The World</div>
         </footer>
     </div>
 
