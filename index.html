@@ -6,161 +6,242 @@
     <title>Shenkaiyi Rong | Anthropology, Design & Exploration</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style>
         /* =====================
-           核心变量定义 
+           V7.1 稳定版样式 (Safe Mode)
            ===================== */
         :root {
-            --bg: #fcfcf9; /* 护眼米白背景 */
-            --surface: #ffffff;
-            --text-main: #121212;
-            --text-sub: #525252;
-            --border: rgba(0,0,0,0.08);
-            --columbia-blue: #C4D8E2; /* 哥大蓝 */
+            --bg: #fcfcf9;       /* 护眼米白 */
+            --surface: #ffffff;  /* 纯白卡片 */
+            --text-main: #121212;/* 深黑字 */
+            --text-sub: #525252; /* 灰字 */
+            --border: #e5e5e5;
+            --columbia-blue: #C4D8E2;
             --font-serif: "Playfair Display", serif;
             --font-sans: "Inter", -apple-system, sans-serif;
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* 深色模式适配 */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #0a0a0a;
-                --surface: #121212;
-                --text-main: #e0e0e0;
-                --text-sub: #a0a0a0;
-                --border: rgba(255,255,255,0.1);
-            }
-        }
-
-        /* =====================
-           基础重置 
-           ===================== */
+        /* 强制基础样式，防止白屏 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            background: var(--bg); 
+            background-color: var(--bg); 
             color: var(--text-main); 
             font-family: var(--font-sans); 
             line-height: 1.8; 
-            padding: 100px 24px; 
-            overflow-x: hidden; /* 防止横向滚动条 */
+            padding: 80px 24px; 
+            overflow-x: hidden;
         }
 
         .container { max-width: 900px; margin: 0 auto; }
 
-        /* =====================
-           Header 区域 (带纹理)
-           ===================== */
-        header { 
-            margin-bottom: 120px; 
-            position: relative; 
-            min-height: 250px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center;
-        }
-
-        /* 右侧抽象线条纹理 SVG */
-        header::after {
-            content: "";
-            position: absolute;
-            right: -10%;
-            top: -20%;
-            width: 60%;
-            height: 140%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23C4D8E2' stroke-width='1' opacity='0.5'%3E%3Cpath d='M769 229C749.8 225.3 738.4 223.6 726.8 222.4C680.2 217.4 628.6 222.6 584.7 240.4C540.8 258.2 504.6 288.7 478.3 326.8C452.1 364.8 435.7 410.5 429.4 456.6C423.1 502.8 426.9 549.3 440.8 592.9C454.7 636.5 478.8 677.1 511.4 709.8C544 742.4 585 767 630.8 781.2C676.5 795.3 726.9 799 774.4 791.7'/%3E%3Cpath d='M856 132C831.2 127.4 816.6 125.4 801.8 124C742.3 118.4 676.2 125.9 620 149.8C563.8 173.6 517.5 214.6 483.9 265.8C450.3 317 429.4 378.3 421.3 440.3C413.3 502.4 418.1 565.1 435.9 623.7C453.7 682.4 484.6 736.9 526.3 780.7C568.1 824.5 620.5 857.5 679.2 876.6'/%3E%3C/g%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-size: contain;
-            z-index: 0;
-            pointer-events: none;
-        }
-
+        /* Header */
+        header { margin-bottom: 100px; position: relative; }
+        
         h1 { 
             font-family: var(--font-serif); 
-            font-size: clamp(3rem, 10vw, 5.5rem); 
-            line-height: 0.9; 
+            font-size: clamp(2.8rem, 10vw, 5rem); 
+            line-height: 1; 
             margin-bottom: 32px; 
-            letter-spacing: -0.04em; 
-            position: relative; 
-            z-index: 1;
+            color: #000; /* 强制黑色 */
         }
 
         .tagline { 
-            font-size: 1.35rem; 
+            font-size: 1.3rem; 
             color: var(--text-sub); 
-            max-width: 680px; 
+            max-width: 700px; 
             font-weight: 300; 
-            position: relative; 
-            z-index: 1;
-            line-height: 1.6;
         }
 
         .tagline b { 
-            color: var(--text-main); 
+            color: #000; 
             font-weight: 600; 
             border-bottom: 2px solid var(--columbia-blue); 
         }
 
-        /* =====================
-           卡片网格布局 
-           ===================== */
+        /* Grid Layout */
         .grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
             gap: 32px; 
             margin-top: 80px; 
-            position: relative; 
-            z-index: 1;
         }
 
         .card { 
             background: var(--surface); 
             border: 1px solid var(--border); 
-            padding: 56px 48px; 
-            transition: var(--transition); 
-            border-radius: 2px;
+            padding: 48px 40px; 
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover { 
-            border-color: var(--text-main); 
             transform: translateY(-5px); 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.02); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            border-color: var(--text-main);
         }
 
         .card h2 { 
             font-size: 0.75rem; 
             text-transform: uppercase; 
-            letter-spacing: 0.3em; 
+            letter-spacing: 0.2em; 
             color: var(--text-sub); 
-            margin-bottom: 28px; 
-            opacity: 0.6; 
+            margin-bottom: 24px; 
+            opacity: 0.7; 
         }
 
         .card h3 { 
             font-family: var(--font-serif); 
             font-size: 1.8rem; 
-            margin-bottom: 18px; 
+            margin-bottom: 16px; 
             font-style: italic; 
+            color: #000;
         }
 
         .card p { 
-            font-size: 1.05rem; 
+            font-size: 1rem; 
             color: var(--text-sub); 
-            font-weight: 300; 
         }
 
-        /* =====================
-           联系板块 (重点升级)
-           ===================== */
+        /* Contact Section */
         .contact-section { 
             margin-top: 100px; 
-            padding: 64px 48px; 
+            padding: 56px 48px; 
             background: var(--surface); 
             border: 1px solid var(--border); 
-            position: relative; 
-            z-index: 1;
+            border-radius: 4px;
         }
 
-        /* 普鲁斯特名言样式 */
+        .quote-block { 
+            margin-bottom: 40px; 
+            padding-bottom: 40px; 
+            border-bottom: 1px solid var(--border); 
+        }
+
+        .quote-text { 
+            font-family: var(--font-serif); 
+            font-size: 1.5rem; 
+            font-style: italic; 
+            color: #000; 
+            margin-bottom: 12px; 
+        }
+
+        .quote-author { 
+            font-size: 0.85rem; 
+            color: var(--text-sub); 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+        }
+
+        .contact-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .email-text {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: #000;
+            text-decoration: none;
+            border-bottom: 2px solid var(--columbia-blue);
+            word-break: break-all;
+        }
+        .email-text:hover { background-color: var(--columbia-blue); }
+
+        .linkedin-link {
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+        }
+        .linkedin-link:hover { color: #000; border-color: #000; }
+
+        /* Footer */
+        footer { 
+            margin-top: 100px; 
+            padding-top: 40px; 
+            border-top: 1px solid var(--border); 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 0.8rem; 
+            color: var(--text-sub); 
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) { 
+            .grid { grid-template-columns: 1fr; } 
+            h1 { font-size: 3.5rem; } 
+            .card { padding: 32px; }
+            footer { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Shenkaiyi Rong</h1>
+            <p class="tagline">
+                Graduate student in <b>Anthropology and Education</b> at <b>Columbia University</b>. 
+                Bridging the gap between human narratives, digital landscapes, and the spirit of exploration.
+            </p>
+        </header>
+
+        <main class="grid">
+            <section class="card">
+                <h2>Academia</h2>
+                <h3>Ethnographic Insight</h3>
+                <p>Decoding the cultural patterns that shape modern learning. I explore how our social environments influence our digital interactions and educational growth.</p>
+            </section>
+
+            <section class="card">
+                <h2>Design</h2>
+                <h3>UX Anthropology</h3>
+                <p>Applying deep human empathy to digital product design. I believe understanding the "user" starts with understanding the "human."</p>
+            </section>
+
+            <section class="card">
+                <h2>Exploration</h2>
+                <h3>The Great Wanderer</h3>
+                <p>From the glacial horizons of <b>Alaska</b> to the thunderous majesty of <b>Niagara Falls</b>. Documenting the American landscape through the lens of a student traveler.</p>
+            </section>
+
+            <section class="card">
+                <h2>Philosophy</h2>
+                <h3>Interactive Joy</h3>
+                <p>Drawing inspiration from the art of Nintendo. I explore how playful design and lateral thinking can create meaningful, lasting emotional connections.</p>
+            </section>
+        </main>
+
+        <section class="contact-section">
+            <div class="quote-block">
+                <p class="quote-text">“The real voyage of discovery consists not in seeking new landscapes, but in having new eyes.”</p>
+                <p class="quote-author">— Marcel Proust</p>
+            </div>
+            
+            <div style="margin-bottom: 24px;">
+                <span class="contact-label">Email Me At</span>
+                <a href="mailto:shenkaiyi2002@outlook.com" class="email-text">shenkaiyi2002@outlook.com</a>
+            </div>
+
+            <div>
+                <span class="contact-label">Professional Profile</span>
+                <a href="https://www.linkedin.com/in/shenkaiyi-rong-085b74359/" target="_blank" class="linkedin-link">Connect on LinkedIn &rarr;</a>
+            </div>
+        </section>
+
+        <footer>
+            <div>SHENKAIYI.COM / 2026</div>
+            <div>New Jersey & The World</div>
+        </footer>
+    </div>
+
+</body>
+</html>
