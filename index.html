@@ -1,307 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shenkaiyi Rong | Anthropology & Design</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shenkaiyi Rong | Anthropology, Design & Exploration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        /* =====================
+           核心变量定义 
+           ===================== */
+        :root {
+            --bg: #fcfcf9; /* 护眼米白背景 */
+            --surface: #ffffff;
+            --text-main: #121212;
+            --text-sub: #525252;
+            --border: rgba(0,0,0,0.08);
+            --columbia-blue: #C4D8E2; /* 哥大蓝 */
+            --font-serif: "Playfair Display", serif;
+            --font-sans: "Inter", -apple-system, sans-serif;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+        /* 深色模式适配 */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0a0a0a;
+                --surface: #121212;
+                --text-main: #e0e0e0;
+                --text-sub: #a0a0a0;
+                --border: rgba(255,255,255,0.1);
+            }
+        }
 
-  <style>
-    /* =====================
-       Base Variables
-    ===================== */
-    :root {
-      --bg: #fcfcf9;
-      --surface: #ffffff;
-      --text-main: #121212;
-      --text-sub: #5a5a5a;
-      --border: rgba(0,0,0,0.08);
-      --accent: #c4d8e2;
+        /* =====================
+           基础重置 
+           ===================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background: var(--bg); 
+            color: var(--text-main); 
+            font-family: var(--font-sans); 
+            line-height: 1.8; 
+            padding: 100px 24px; 
+            overflow-x: hidden; /* 防止横向滚动条 */
+        }
 
-      --font-serif: "Playfair Display", serif;
-      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+        .container { max-width: 900px; margin: 0 auto; }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0d0d0d;
-        --surface: #151515;
-        --text-main: #eaeaea;
-        --text-sub: #a0a0a0;
-        --border: rgba(255,255,255,0.12);
-        --accent: #4a7a96;
-      }
-    }
+        /* =====================
+           Header 区域 (带纹理)
+           ===================== */
+        header { 
+            margin-bottom: 120px; 
+            position: relative; 
+            min-height: 250px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+        }
 
-    /* =====================
-       Reset
-    ===================== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        /* 右侧抽象线条纹理 SVG */
+        header::after {
+            content: "";
+            position: absolute;
+            right: -10%;
+            top: -20%;
+            width: 60%;
+            height: 140%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23C4D8E2' stroke-width='1' opacity='0.5'%3E%3Cpath d='M769 229C749.8 225.3 738.4 223.6 726.8 222.4C680.2 217.4 628.6 222.6 584.7 240.4C540.8 258.2 504.6 288.7 478.3 326.8C452.1 364.8 435.7 410.5 429.4 456.6C423.1 502.8 426.9 549.3 440.8 592.9C454.7 636.5 478.8 677.1 511.4 709.8C544 742.4 585 767 630.8 781.2C676.5 795.3 726.9 799 774.4 791.7'/%3E%3Cpath d='M856 132C831.2 127.4 816.6 125.4 801.8 124C742.3 118.4 676.2 125.9 620 149.8C563.8 173.6 517.5 214.6 483.9 265.8C450.3 317 429.4 378.3 421.3 440.3C413.3 502.4 418.1 565.1 435.9 623.7C453.7 682.4 484.6 736.9 526.3 780.7C568.1 824.5 620.5 857.5 679.2 876.6'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-    body {
-      background: var(--bg);
-      color: var(--text-main);
-      font-family: var(--font-sans);
-      line-height: 1.75;
-      padding: 96px 24px;
-      position: relative; /* 防白屏关键 */
-    }
+        h1 { 
+            font-family: var(--font-serif); 
+            font-size: clamp(3rem, 10vw, 5.5rem); 
+            line-height: 0.9; 
+            margin-bottom: 32px; 
+            letter-spacing: -0.04em; 
+            position: relative; 
+            z-index: 1;
+        }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+        .tagline { 
+            font-size: 1.35rem; 
+            color: var(--text-sub); 
+            max-width: 680px; 
+            font-weight: 300; 
+            position: relative; 
+            z-index: 1;
+            line-height: 1.6;
+        }
 
-    /* =====================
-       Header
-    ===================== */
-    header {
-      margin-bottom: 120px;
-    }
+        .tagline b { 
+            color: var(--text-main); 
+            font-weight: 600; 
+            border-bottom: 2px solid var(--columbia-blue); 
+        }
 
-    h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(3rem, 8vw, 5rem);
-      line-height: 1;
-      letter-spacing: -0.03em;
-      margin-bottom: 28px;
-    }
+        /* =====================
+           卡片网格布局 
+           ===================== */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 32px; 
+            margin-top: 80px; 
+            position: relative; 
+            z-index: 1;
+        }
 
-    .tagline {
-      max-width: 680px;
-      font-size: 1.25rem;
-      font-weight: 300;
-      color: var(--text-sub);
-    }
+        .card { 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            padding: 56px 48px; 
+            transition: var(--transition); 
+            border-radius: 2px;
+        }
 
-    .tagline b {
-      color: var(--text-main);
-      font-weight: 600;
-      border-bottom: 2px solid var(--accent);
-    }
+        .card:hover { 
+            border-color: var(--text-main); 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02); 
+        }
 
-    /* =====================
-       Grid
-    ===================== */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      margin-top: 80px;
-    }
+        .card h2 { 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.3em; 
+            color: var(--text-sub); 
+            margin-bottom: 28px; 
+            opacity: 0.6; 
+        }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 48px 44px;
-      transition: 0.3s ease;
-    }
+        .card h3 { 
+            font-family: var(--font-serif); 
+            font-size: 1.8rem; 
+            margin-bottom: 18px; 
+            font-style: italic; 
+        }
 
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: var(--text-main);
-    }
+        .card p { 
+            font-size: 1.05rem; 
+            color: var(--text-sub); 
+            font-weight: 300; 
+        }
 
-    .card h2 {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
-      color: var(--text-sub);
-      margin-bottom: 24px;
-      opacity: 0.7;
-    }
+        /* =====================
+           联系板块 (重点升级)
+           ===================== */
+        .contact-section { 
+            margin-top: 100px; 
+            padding: 64px 48px; 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            position: relative; 
+            z-index: 1;
+        }
 
-    .card h3 {
-      font-family: var(--font-serif);
-      font-size: 1.7rem;
-      font-style: italic;
-      margin-bottom: 18px;
-    }
-
-    .card p {
-      font-size: 1rem;
-      color: var(--text-sub);
-      font-weight: 300;
-    }
-
-    /* =====================
-       Contact
-    ===================== */
-    .contact {
-      margin-top: 120px;
-      padding: 64px 48px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-
-    .quote {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      font-style: italic;
-      margin-bottom: 12px;
-    }
-
-    .author {
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-sub);
-      margin-bottom: 48px;
-    }
-
-    .label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--text-sub);
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .email {
-      font-family: var(--font-serif);
-      font-size: 1.8rem;
-      border-bottom: 2px solid var(--accent);
-      display: inline-block;
-    }
-
-    .email span {
-      user-select: all;
-    }
-
-    .linkedin {
-      margin-top: 28px;
-      display: inline-block;
-      color: var(--text-sub);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .linkedin:hover {
-      color: var(--text-main);
-      border-bottom-color: var(--text-main);
-    }
-
-    /* =====================
-       Footer
-    ===================== */
-    footer {
-      margin-top: 120px;
-      padding-top: 40px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-sub);
-    }
-
-    @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      body {
-        padding: 72px 20px;
-      }
-
-      h1 {
-        font-size: 3.2rem;
-      }
-
-      .email {
-        font-size: 1.3rem;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 16px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="container">
-
-    <header>
-      <h1>Shenkaiyi Rong</h1>
-      <p class="tagline">
-        Graduate student in <b>Anthropology & Education</b> at <b>Columbia University</b>.  
-        Exploring how human narratives shape technology, learning, and design.
-      </p>
-    </header>
-
-    <main class="grid">
-      <section class="card">
-        <h2>Academia</h2>
-        <h3>Ethnographic Insight</h3>
-        <p>
-          I study how culture quietly structures modern education and digital behavior,
-          focusing on what systems overlook and people live through.
-        </p>
-      </section>
-
-      <section class="card">
-        <h2>Design</h2>
-        <h3>UX Anthropology</h3>
-        <p>
-          Good UX begins before interfaces. I approach design through observation,
-          empathy, and the complexity of human behavior.
-        </p>
-      </section>
-
-      <section class="card">
-        <h2>Exploration</h2>
-        <h3>Learning in Motion</h3>
-        <p>
-          From classrooms to landscapes, I document how place, movement, and context
-          shape understanding.
-        </p>
-      </section>
-
-      <section class="card">
-        <h2>Philosophy</h2>
-        <h3>Play & Meaning</h3>
-        <p>
-          Inspired by Nintendo: play is not distraction, but a serious way humans
-          make sense of the world.
-        </p>
-      </section>
-    </main>
-
-    <section class="contact">
-      <p class="quote">
-        “The real voyage of discovery consists not in seeking new landscapes, but in having new eyes.”
-      </p>
-      <p class="author">— Marcel Proust</p>
-
-      <span class="label">Email</span>
-      <div class="email">
-        <span>shenkaiyi2002@outlook.com</span>
-      </div>
-
-      <br>
-
-      <a class="linkedin" href="https://www.linkedin.com/in/shenkaiyi-rong-085b74359/" target="_blank">
-        LinkedIn →
-      </a>
-    </section>
-
-    <footer>
-      <div>SHENKAIYI.COM / 2026</div>
-      <div>Based in New Jersey</div>
-    </footer>
-
-  </div>
-</body>
-</html>
+        /* 普鲁斯特名言样式 */
