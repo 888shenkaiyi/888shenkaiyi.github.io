@@ -1,66 +1,207 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>Shenkaiyi Rong</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      max-width: 720px;
-      margin: 80px auto;
-      padding: 0 20px;
-      line-height: 1.7;
-      color: #111;
-      background: #fff;
-    }
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 0.2em;
-    }
-    h2 {
-      margin-top: 2.5em;
-      font-size: 1.2rem;
-      color: #444;
-    }
-    p {
-      margin: 0.8em 0;
-    }
-    a {
-      color: #0056cc;
-      text-decoration: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shenkaiyi Rong | 戎沈楷轶</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* 浅色模式：象牙质感的白，降低视疲劳 */
+            --bg: #fcfcf9;
+            --surface: #ffffff;
+            --text-main: #1a1a1a;
+            --text-sub: #5f6368;
+            --border: rgba(0,0,0,0.06);
+            --columbia-blue: #C4D8E2;
+            --accent: #2d5a27; /* 田野调查的森林绿 */
+            --font-serif: "Playfair Display", serif;
+            --font-sans: "Inter", -apple-system, sans-serif;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0d0d0d;
+                --surface: #161616;
+                --text-main: #e8e8e8;
+                --text-sub: #909090;
+                --border: rgba(255,255,255,0.08);
+                --columbia-blue: #4a7a96;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg); 
+            color: var(--text-main); 
+            font-family: var(--font-sans);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            padding: 100px 24px;
+        }
+
+        .container { max-width: 860px; margin: 0 auto; }
+
+        header { margin-bottom: 120px; position: relative; }
+        
+        /* 增加一个细小的装饰线，致敬学术传统 */
+        header::before {
+            content: "";
+            position: absolute;
+            left: -32px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--text-main);
+            opacity: 0.1;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-sub);
+            max-width: 650px;
+            font-weight: 300;
+        }
+
+        .tagline b {
+            color: var(--text-main);
+            font-weight: 600;
+            text-decoration: underline decoration-color var(--columbia-blue);
+            text-underline-offset: 4px;
+        }
+
+        /* 重点：优化后的网格布局 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 80px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 2px; /* 方正比圆角更有力量感 */
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            border-color: var(--text-main);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+        }
+
+        .card h2 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--columbia-blue);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+        }
+
+        footer {
+            margin-top: 150px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            color: var(--text-sub);
+        }
+
+        footer a { color: var(--text-main); text-decoration: none; border-bottom: 1px solid var(--columbia-blue); }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            body { padding: 60px 20px; }
+            header::before { display: none; }
+            .grid { grid-template-columns: 1fr; }
+            h1 { font-size: 3rem; }
+        }
+    </style>
 </head>
 <body>
 
-<h1>Shenkaiyi Rong</h1>
-<p>Graduate Student · Education & Culture</p>
+    <div class="container">
+        <header>
+            <h1>Shenkaiyi Rong<br>戎沈楷轶</h1>
+            <p class="tagline">
+                在 <b>Teachers College, Columbia University</b> 研习人类学与教育。我试图在公关叙事的敏锐与社会科学的深厚之间，搭建一座关于“理解”的桥梁。
+            </p>
+        </header>
 
-<h2>About</h2>
-<p>
-I am a graduate student at Teachers College, Columbia University, interested in how education,
-culture, and institutions shape everyday experiences. My work connects lived experience,
-research, and reflection across different cultural contexts.
-</p>
+        <main class="grid">
+            <section class="card">
+                <div>
+                    <h2>Academic</h2>
+                    <h3>Ethnographic Research</h3>
+                    <p>不止于书本。我关注在技术飞速渗透的当代，文化如何重新定义教育。用民族志的方法，记录那些被算法遗忘的真实人性。</p>
+                </div>
+            </section>
 
-<h2>Experience</h2>
-<p>
-Marketing Intern · Media Intern · Guesthouse Management (Japan)
-</p>
+            <section class="card">
+                <div>
+                    <h2>Design</h2>
+                    <h3>UX & Anthropology</h3>
+                    <p>最好的 UX 往往诞生于对人类行为的极致观察。我将人类学的底层洞察注入产品设计，让技术更懂人的“非理性”之美。</p>
+                </div>
+            </section>
 
-<h2>Education</h2>
-<p>
-Teachers College, Columbia University<br>
-Kean University<br>
-Ningbo Foreign Language School
-</p>
+            <section class="card">
+                <div>
+                    <h2>Movement</h2>
+                    <h3>NJ-NYC Observer</h3>
+                    <p>19年 BMW X5 不仅仅是座驾，更是我在哈德逊河两岸穿梭的移动观察室。在速度中思考空间、阶级与城市的脉络。</p>
+                </div>
+            </section>
 
-<h2>Contact</h2>
-<p>
-Email: <a href="mailto:shenkaiyi888@gmail.com">shenkaiyi888@gmail.com</a><br>
-LinkedIn: coming soon
-</p>
+            <section class="card">
+                <div>
+                    <h2>Spirit</h2>
+                    <h3>Nintendo Philosophy</h3>
+                    <p>任天堂教会我：伟大的产品不依赖硬件的堆砌，而在于对“玩”这一人类天性的深刻理解。在海拉鲁大地寻找设计的真谛。</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div>SHENKAIYI.COM / 2026 / BORN IN NINGBO, BASED IN NJ</div>
+            <div>
+                <a href="mailto:shenkaiyi888@gmail.com">Connect with me</a>
+            </div>
+        </footer>
+    </div>
 
 </body>
 </html>
