@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check One? — Gender Classification Form</title>
+  <style>
+    :root {
+      --bg: #f4eee4;
+      --paper: #fffaf0;
+      --ink: #1b1b1b;
+      --muted: #666;
+      --red: #9b1c1c;
+      --soft-red: #f7d9d5;
+      --shadow: rgba(0,0,0,0.14);
+      --dark: #151515;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    header {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 56px 20px;
+      background: radial-gradient(circle at center, #fffaf0 0%, #e5d7c4 75%);
+    }
+
+    .hero {
+      width: min(1100px, 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .form-object {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      padding: 36px;
+      box-shadow: 14px 14px 0 var(--shadow);
+      transform: rotate(-1.2deg);
+    }
+
+    .school-label {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 12px;
+      margin-bottom: 26px;
+    }
+
+    .question {
+      font-size: 30px;
+      margin-bottom: 18px;
+    }
+
+    .required {
+      color: var(--red);
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      margin-left: 8px;
+      text-transform: uppercase;
+    }
+
+    .checkline {
+      font-family: Arial, sans-serif;
+      font-size: 26px;
+      margin: 17px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .box {
+      display: inline-block;
+      width: 27px;
+      height: 27px;
+      border: 3px solid var(--ink);
+      margin-right: 13px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .checked::after {
+      content: "✓";
+      color: var(--red);
+      font-size: 36px;
+      position: absolute;
+      left: 0px;
+      top: -16px;
+      font-weight: bold;
+    }
+
+    .strike {
+      text-decoration: line-through;
+      text-decoration-color: var(--red);
+      text-decoration-thickness: 4px;
+    }
+
+    .scribble {
+      margin-top: 28px;
+      padding: 19px;
+      border: 2px dashed var(--red);
+      color: var(--red);
+      font-family: Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      transform: rotate(1deg);
+      background: rgba(155,28,28,0.05);
+    }
+
+    .blocked {
+      margin-top: 18px;
+      font-family: Arial, sans-serif;
+      padding: 13px 15px;
+      border: 2px solid var(--red);
+      background: var(--soft-red);
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(50px, 8vw, 96px);
+      line-height: 0.96;
+      margin: 0 0 18px;
+    }
+
+    .byline {
+      font-family: Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: .02em;
+    }
+
+    .subtitle {
+      font-size: clamp(20px, 2vw, 28px);
+      max-width: 640px;
+      margin: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 10px 14px;
+      border: 2px solid var(--ink);
+      font-family: Arial, sans-serif;
+      background: rgba(255,255,255,.45);
+      font-weight: 700;
+    }
+
+    section {
+      padding: 86px 20px;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 42px;
+      margin: 0 0 14px;
+      line-height: 1.1;
+    }
+
+    .lead {
+      font-size: 21px;
+      max-width: 880px;
+    }
+
+    .panel {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      padding: 31px;
+      box-shadow: 8px 8px 0 var(--shadow);
+      margin-top: 28px;
+      font-size: 18px;
+    }
+
+    .callout {
+      border-left: 8px solid var(--red);
+      padding: 18px 24px;
+      background: #fff8ee;
+      margin-top: 28px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 34px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      padding: 26px;
+      min-height: 360px;
+      box-shadow: 7px 7px 0 var(--shadow);
+    }
+
+    .source {
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--red);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .card h3 {
+      font-size: 24px;
+      margin: 10px 0 12px;
+      line-height: 1.15;
+    }
+
+    .dark {
+      background: var(--dark);
+      color: var(--paper);
+    }
+
+    .dark .panel {
+      background: #242424;
+      border-color: var(--paper);
+      color: var(--paper);
+      box-shadow: 8px 8px 0 rgba(255,255,255,.12);
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    button {
+      cursor: pointer;
+      padding: 15px 20px;
+      font-size: 17px;
+      font-family: Arial, sans-serif;
+      border: 2px solid var(--paper);
+      background: transparent;
+      color: var(--paper);
+      transition: .2s;
+    }
+
+    button:hover {
+      background: var(--paper);
+      color: var(--dark);
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 27px;
+      color: #ffd8d8;
+      min-height: 92px;
+      max-width: 900px;
+      font-weight: 700;
+    }
+
+    .alt-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .alt {
+      background: var(--paper);
+      padding: 22px;
+      border-left: 7px solid var(--red);
+      min-height: 170px;
+      box-shadow: 5px 5px 0 var(--shadow);
+    }
+
+    .alt h3 {
+      margin: 0 0 8px;
+      font-size: 21px;
+    }
+
+    .note {
+      background: #fffdf7;
+      border: 2px solid var(--ink);
+      padding: 34px;
+      box-shadow: 8px 8px 0 var(--shadow);
+      margin-top: 26px;
+      font-size: 18px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 42px 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .grid, .alt-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        min-height: auto;
+      }
+
+      .form-object {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="hero">
+      <div class="form-object" aria-label="A school gender classification form">
+        <div class="school-label">School / Visa / Institutional Registration Form</div>
+        <div class="question">Gender: <strong>Check One</strong><span class="required">Required</span></div>
+
+        <div class="checkline"><span class="box checked"></span><span class="strike">Male</span></div>
+        <div class="checkline"><span class="box checked"></span><span class="strike">Female</span></div>
+        <div class="checkline"><span class="box checked"></span><span class="strike">N/A</span></div>
+
+        <div class="blocked">You cannot continue until one option is selected.</div>
+
+        <div class="scribble">
+          Why only these choices?<br />
+          Who decides what counts?<br />
+          What happens when refusal is not allowed?
+        </div>
+      </div>
+
+      <div>
+        <h1>Check One?</h1>
+        <div class="byline">A material analysis by Shenkaiyi Rong</div>
+        <p class="subtitle">
+          Gender classification, institutional legibility, and the violence of required categories.
+        </p>
+        <div class="tag">Material Object: Gender Classification Form</div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <h2>1. The Object</h2>
+      <p class="lead">
+        This project uses a gender classification form as the central material object. The form looks ordinary: it asks a student, applicant, or institutional subject to select <strong>Male</strong>, <strong>Female</strong>, or sometimes <strong>N/A</strong>. But this ordinary object is not neutral. It teaches that gender must be fixed, selected, and made readable before a person can move through an institution.
+      </p>
+
+      <div class="panel">
+        <p>
+          The form does not simply record gender identity. It produces a narrow version of gender by forcing identity into a small set of administratively acceptable choices. The instruction “check one” becomes a curricular act: it teaches which genders are recognizable, which are treated as exceptions, and which forms of self-definition are blocked before they can appear.
+        </p>
+      </div>
+
+      <div class="callout">
+        The object’s violence is not only that it asks for gender. It is that the question is often required.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>2. Critical Analysis: What Does the Form Do?</h2>
+      <p class="lead">
+        The gender form works as a pedagogical object. It teaches students how gender should be read, how bodies should be classified, and which identities become difficult to recognize.
+      </p>
+
+      <div class="panel">
+        <p>
+          The form carries a clear ideology: gender is binary, stable, and available for institutional sorting. Even when <strong>N/A</strong> appears as a third option, it does not necessarily solve the problem. N/A can function as an administrative leftover category, marking gender difference as “not applicable” rather than fully recognizable.
+        </p>
+        <p>
+          My argument is that the gender form does not fail because it is incomplete. It fails because it pretends closure is possible. It attempts to settle gender into a required answer, even though lived gender may be open, relational, changing, or not fully containable by institutional language.
+        </p>
+        <p>
+          In this sense, the form makes gender classification a condition of participation. The user cannot continue until they become readable to the system.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>3. Three Course Texts</h2>
+      <p class="lead">
+        The object connects Wooley, Slater et al., and Nicolazzo through one shared problem: institutions often require gender to become readable before a person can become recognized.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="source">Wooley, 2015</div>
+          <h3>Critical Literacy of Binary Gender</h3>
+          <p>
+            Wooley helps show that gender is learned through literacy practices. The form is a gender literacy lesson: it teaches users to read gender as a limited set of official options.
+          </p>
+          <p>
+            Male/Female becomes a curriculum of binary recognition. N/A may look like an alternative, but it can still position non-binary or unclassifiable gender as outside the main grammar of recognition.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="source">Slater et al., 2018</div>
+          <h3>Biopolitics of Safe Space</h3>
+          <p>
+            Slater et al. help reveal how care and safety can become techniques of regulation. Institutions may classify gender in the name of safety, data, placement, policy, or protection.
+          </p>
+          <p>
+            But classification also manages bodies. The form turns gender into an administrative object that can be sorted, monitored, and governed.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="source">Nicolazzo, 2020</div>
+          <h3>Invisibility as Possibility</h3>
+          <p>
+            Nicolazzo complicates the assumption that visibility is always liberation. When a form cannot recognize someone’s lived gender, being unseen may become a strategy of protection.
+          </p>
+          <p>
+            Yet required fields also expose a contradiction: invisibility may be necessary, but the system may not allow refusal. This is where the form becomes coercive.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark">
+    <div class="container">
+      <h2>4. The Interruption</h2>
+      <p class="lead">
+        The interruption is not simply adding another box. A third option may help, but it can also create another fixed category. The deeper interruption asks why gender must be reduced to a required field at all.
+      </p>
+
+      <div class="buttons">
+        <button onclick="answer('male')">Check Male</button>
+        <button onclick="answer('female')">Check Female</button>
+        <button onclick="answer('na')">Check N/A</button>
+        <button onclick="answer('blank')">Try to Leave Blank</button>
+      </div>
+
+      <div id="result">Choose one response.</div>
+
+      <div class="panel">
+        <p>
+          Refusal becomes difficult when the field is required. The system does not simply ask for gender; it makes gender classification a condition for moving forward. Checking N/A, crossing out the options, or attempting to leave the answer blank exposes the form’s hidden assumption: that gender must be stable, singular, and institutionally readable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>5. Imagining an Alternative Curriculum</h2>
+      <p class="lead">
+        A critical curriculum of gender cannot only ask for “better boxes.” It must question why school and institutional systems need gender classification, who benefits from it, and what forms of life become impossible under it.
+      </p>
+
+      <div class="alt-grid">
+        <div class="alt">
+          <h3>Ask Less</h3>
+          <p>Only collect gender data when there is a clear ethical and pedagogical reason.</p>
+        </div>
+        <div class="alt">
+          <h3>Self-Description</h3>
+          <p>Allow students to describe gender in their own language rather than choosing from fixed boxes.</p>
+        </div>
+        <div class="alt">
+          <h3>Change Over Time</h3>
+          <p>Treat gender as revisable, not as a permanent administrative truth.</p>
+        </div>
+        <div class="alt">
+          <h3>Refusal as Valid</h3>
+          <p>Make “I choose not to answer” a legitimate response, not a blocked pathway.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>6. Author’s Note</h2>
+      <div class="note">
+        <p>
+          I selected the gender classification form because it is ordinary and easy to overlook. It appears as a simple administrative document, yet it carries a powerful lesson about gender. It teaches that gender must be fixed, readable, and available for institutional classification.
+        </p>
+        <p>
+          My interpretation is shaped by my experience as an international student. In applying for visas, filling out official documents, and undergoing routine registration processes both in China and in the United States, I have repeatedly encountered the same requirement: to select “male” or “female,” and sometimes “N/A.” This repetition reveals that gender classification is not a one-time act, but a continuous institutional demand. The form does not simply ask who I am; it requires me to become legible within its limited categories.
+        </p>
+        <p>
+          In China, many school, medical, travel, and government records still present gender through a narrow male/female structure. In U.S. institutional contexts, options may appear more flexible, but the structure often remains similar: the user must still make gender answerable to the form. Over time, this repetition produces a feeling that gender must always be available, official, and administratively complete.
+        </p>
+        <p>
+          At the same time, I recognize that my experience is not equivalent to those most directly affected by gender classification, including transgender, nonbinary, queer, and gender-nonconforming individuals. My analysis is limited by my own positionality. However, my perspective allows me to see how the normalization of binary gender operates across different institutional contexts, making it appear natural, inevitable, and unquestionable.
+        </p>
+        <p>
+          The limit of my analysis is that I am focusing on the form as an object, while the lived consequences of gender classification extend far beyond any single document. Still, this object matters because it demonstrates how schools and institutions can turn gender into an administrative fact before individuals have the opportunity to define it for themselves.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    MATERIAL & AFFECT FINAL PROJECT · CT 4032 Gender, Difference, and Curriculum
+  </footer>
+
+  <script>
+    function answer(choice) {
+      const result = document.getElementById("result");
+
+      if (choice === "male") {
+        result.innerHTML = "The form recognizes this answer because it fits the main binary structure. Recognition here depends on compliance.";
+      }
+
+      if (choice === "female") {
+        result.innerHTML = "The form recognizes this answer because it fits the main binary structure. But recognition is still limited by the form's rules.";
+      }
+
+      if (choice === "na") {
+        result.innerHTML = "N/A appears to offer an alternative, but it can also mark gender difference as administratively “not applicable” rather than fully recognized.";
+      }
+
+      if (choice === "blank") {
+        result.innerHTML = "The form does not allow refusal. Leaving the field blank blocks access to the next step, showing how gender classification becomes a condition of participation.";
+      }
+    }
+  </script>
+</body>
+</html>
